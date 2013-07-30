@@ -224,6 +224,7 @@ else
   end
 end
 
+=begin disable logrotate
 logrotate_app "logstash_beaver" do
   cookbook "logrotate"
   path log_file
@@ -233,3 +234,4 @@ logrotate_app "logstash_beaver" do
   rotate 30
   create "0640 #{node['logstash']['user']} #{node['logstash']['group']}"
 end
+=end

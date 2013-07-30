@@ -182,6 +182,7 @@ else
   Chef::Log.fatal("Unsupported init method: #{node['logstash']['server']['init_method']}")
 end
 
+=begin disable logrotate
 logrotate_app "logstash_server" do
   path "#{node['logstash']['log_dir']}/*.log"
   frequency "daily"
@@ -189,4 +190,5 @@ logrotate_app "logstash_server" do
   options node['logstash']['server']['logrotate']['options']
   create "664 #{node['logstash']['user']} #{node['logstash']['group']}"
 end
+=end
 

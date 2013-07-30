@@ -34,6 +34,7 @@ cookbook_file "/opt/logstash/server/etc/patterns/haproxy" do
   mode "0774"
 end
 
+=begin disable logrotate
 # set logrotate  for /opt/logstash/server/apache_logs
 logrotate_app "apache_logs" do
   path node['logstash']['server']['logrotate_target']
@@ -41,3 +42,4 @@ logrotate_app "apache_logs" do
   create    "664 #{node['logstash']['user']} #{node['logstash']['user']}"
   rotate "30"
 end
+=end
