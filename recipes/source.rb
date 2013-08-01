@@ -1,6 +1,5 @@
 include_recipe "build-essential"
 include_recipe "java"
-include_recipe "ant"
 include_recipe "git"
 include_recipe "logstash::default"
 

@@ -19,12 +19,7 @@ if node['logstash']['install_zeromq']
   node['logstash']['zeromq_packages'].each {|p| package p }
 end
 
-if node['logstash']['server']['init_method'] == 'runit'
-  include_recipe "runit"
-  service_resource = 'runit_service[logstash_server]'
-else
-  service_resource = 'service[logstash_server]'
-end
+service_resource = 'service[logstash_server]'
 
 if node['logstash']['server']['patterns_dir'][0] == '/'
   patterns_dir = node['logstash']['server']['patterns_dir']

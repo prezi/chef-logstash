@@ -5,12 +5,7 @@
 #
 include_recipe "logstash::default"
 
-if node['logstash']['agent']['init_method'] == 'runit'
-  include_recipe "runit"
-  service_resource = 'runit_service[logstash_agent]'
-else
-  service_resource = 'service[logstash_agent]'
-end
+service_resource = 'service[logstash_agent]'
 
 if node['logstash']['agent']['patterns_dir'][0] == '/'
   patterns_dir = node['logstash']['agent']['patterns_dir']
@@ -187,6 +182,7 @@ else
   Chef::Log.fatal("Unsupported init method: #{node['logstash']['server']['init_method']}")
 end
 
+=begin disable logrotate
 logrotate_app "logstash" do
   path "#{node['logstash']['log_dir']}/*.log"
   frequency "daily"
@@ -205,4 +201,4 @@ logrotate_app "logstash" do
     EOF
   end
 end
-
+=end
